@@ -1,18 +1,17 @@
-Following Hartl's Ruby on Rails 
-Tutorial
+# Following Hartl's Ruby on Rails Tutorial
 
-Chapter 3 
+## Chapter 3 
 Setup
-$ git remote add origin git@bitbucket.org:<username>/sample_app.git
-$ git push -u origin --all # pushes up the repo and its refs for the first time
+  $ git remote add origin git@bitbucket.org:<username>/sample_app.git
+  $ git push -u origin --all # pushes up the repo and its refs for the first time
 
 Deploy to Heroku with test page via hello action on app controller and as the root route 
 
-$ heroku create
-$ git push heroku master
+  $ heroku create
+  $ git push heroku master
 
 StaticPages 
-$ rails generate controller StaticPages home help
+  $ rails generate controller StaticPages home help
 
 (note camelcase for controllers)
 (destroy will cancel out generate)
@@ -37,5 +36,7 @@ def setup @setup file is auto run before every test
 <title><%= yield(:title) %> | Ruby on Rails Tutorial Sample App</title>
 
 Layout files remove duplicaiton 
+
+
 
 
