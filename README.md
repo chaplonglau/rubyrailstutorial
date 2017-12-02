@@ -21,18 +21,20 @@ Deploy to Heroku with test page via hello action on app controller and as the ro
 2. allow code to be refactored ( change form w/o changing function)
 3. act as a client for app code 
 
-TDD- write fail test, write pass code, refactor
-
-get 'static_pages/about' @ routes auto creates helper called static_pages_about_url
-Adding the root route in Listing 3.41 leads to the creation of a Rails helper called root_url (in analogy with helpers like static_pages_home_url).
-
-assert_select "title", "Home | Ruby on Rails Tutorial Sample App"
-In particular, the code above checks for the presence of a <title> tag containing the string “Home | Ruby on Rails Tutorial Sample App”. 
+TDD- write fail test, write pass code, refactor (red,yellow,green)
 
 def setup @setup file is auto run before every test 
 
-<% provide(:title, "Home") %>dicates using <% ... %> that Rails should call the provide function and associate the string "Home" with the label :title.15 Then, in the title, we use the closely related notation <%= ... %> to insert the title into the template using Ruby’s yield function:
-<title><%= yield(:title) %> | Ruby on Rails Tutorial Sample App</title>
+    assert_select "title", "Home | Ruby on Rails Tutorial Sample App"
+The code above checks for the presence of a <title> tag containing the string “Home | Ruby on Rails Tutorial Sample App”. 
+
+### Routes 
+get 'static_pages/about' @ routes auto creates helper called static_pages_about_url
+Adding the root route leads to the creation of a Rails helper called root_url (in analogy with helpers like static_pages_home_url).
+
+### Layout and Refactoring
+<% provide(:title, "Home") %>dicates using <% ... %> that Rails should call the provide function and associate the string "Home" with the label :title.Then, in the title, we use the closely related notation <%= ... %> to insert the title into the template using Ruby’s yield function:
+    <title><%= yield(:title) %> | Ruby on Rails Tutorial Sample App</title>
 
 Layout files remove duplicaiton 
 
