@@ -74,12 +74,13 @@ asset pipeline- anything in app/assets/stylesheets will auto included as part of
     @import "bootstrap-sprockets";
     @import "bootstrap"
 Those two lines inside custom.scss for bootstrap magic 
-# for id, . for class 
 
 ### Partials
 partials - tuck away logic to its own place 
 looks like this
-      <%= render 'layouts/shim' %> 
+
+    <%= render 'layouts/shim' %> 
+
 rails will look for a file called app/views/layouts/_shim.html.erb, evaluates its contents, and insert the results into the view 
 
 
@@ -104,24 +105,14 @@ Don't hard code, use named routes.
 
 ### Rails Routes
 defining a root route ie: root 'application#hello', arranges for the root path / to be routed to controller/action, and also creates a named route ie, root_path and root_url 
+
     root_path -> '/'
     root_url  -> 'http://www.example.com/'
+
 Use paths for everything except redirects. Use URL for redirects 
 
 ### Integration tests
-require 'test_helper'
 
-class SiteLayoutTest < ActionDispatch::IntegrationTest
-
-  test "layout links" do
-    get root_path
-    assert_template 'static_pages/home'
-    assert_select "a[href=?]", root_path, count: 2
-    assert_select "a[href=?]", help_path
-    assert_select "a[href=?]", about_path
-    assert_select "a[href=?]", contact_path
-  end
-end
 
 
 
