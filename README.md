@@ -38,6 +38,49 @@ Adding the root route leads to the creation of a Rails helper called root_url (i
 
 Layout files remove duplicaiton 
 
+### Extra Gems
+minitest - makes tests pretty
+guard - automated tests 
+
+## Chapter 4 
+custom helper- new user-specified functions for use in views 
+
+###Ruby
+Parentheses on function calls are optional. 
+Curly braces on final hash arguments are optional.
+The Two are Equivalent
+      stylesheet_link_tag('application', {media: 'all',
+                                         'data-turbolinks-track': 'reload'})
+      stylesheet_link_tag 'application', media: 'all',
+                                         'data-turbolinks-track': 'reload'
+above code calls the stylesheet_link_tag function with two arguments: a string, indicating the path to the stylesheet, and a hash with two elements, indicating the media type and telling Rails to use the turbolinks feature added in Rails 4.0.
+
+###Classes
+    class StaticPagesController < ApplicationController
+means StaticPagesController is a class that inherits from ApplicationController
+
+## Chapter 5
+HTML5shim - HTML5 workaround, include for older browsers 
+link_to - first argument is link text, second is URL , third is options hash
+image_tag - first argument path to an image, second optional hash
+rails generate- auto creates a sepearate css file for each controller
+we tend to make a single custom file though
+asset pipeline- anything in app/assets/stylesheets will auto included as part of the application.css file included in the site layout. 
+
+### Bootstrap
+    @import "bootstrap-sprockets";
+    @import "bootstrap"
+Those two lines inside custom.scss for bootstrap magic 
+# for id, . for class 
+
+### Partials
+partials - tuck away logic to its own place 
+looks like this
+      <%= render 'layouts/shim' %> 
+rails will look for a file called app/views/layouts/_shim.html.erb, evaluates its contents, and insert the results into the view 
+
+
+
 
 
 
