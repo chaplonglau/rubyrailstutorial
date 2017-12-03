@@ -80,7 +80,45 @@ looks like this
 rails will look for a file called app/views/layouts/_shim.html.erb, evaluates its contents, and insert the results into the view 
 
 
+### Asset Pipeline 
+Rails pipeline has 3 standard directories for static assets 
+* app/assets (assets for present app)
+* lib/assets (assets for libraries)
+* vendor/assets (assets from 3rd party)
+Each dir has images, js, css 
 
+Manifest file- tells rails how to combine assets into single files 
+After asset assemblation, rails pushes them through preprocessing engines, and uses manifest files to combine them for delivery to the browser 
+
+TLDR: asset pipeline combines all app stylesheets into one applicaiton.css, and all js into application.js 
+
+### SASS
+sass is a strict superset of css, meaning all css can be scss. 
+allows nesting and variables 
+
+### Layout LInks
+Don't hard code, use named routes. 
+
+### Rails Routes
+defining a root route ie: root 'application#hello', arranges for the root path / to be routed to controller/action, and also creates a named route ie, root_path and root_url 
+    root_path -> '/'
+    root_url  -> 'http://www.example.com/'
+Use paths for everything except redirects. Use URL for redirects 
+
+### Integration tests
+require 'test_helper'
+
+class SiteLayoutTest < ActionDispatch::IntegrationTest
+
+  test "layout links" do
+    get root_path
+    assert_template 'static_pages/home'
+    assert_select "a[href=?]", root_path, count: 2
+    assert_select "a[href=?]", help_path
+    assert_select "a[href=?]", about_path
+    assert_select "a[href=?]", contact_path
+  end
+end
 
 
 
