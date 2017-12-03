@@ -60,10 +60,13 @@ above code calls the stylesheet_link_tag function with two arguments: a string, 
 means StaticPagesController is a class that inherits from ApplicationController
 
 ## Chapter 5
-HTML5shim - HTML5 workaround, include for older browsers 
+HTML5shim - HTML5 workaround, include for older browsers
+
 link_to - first argument is link text, second is URL , third is options hash
+
 image_tag - first argument path to an image, second optional hash
-rails generate- auto creates a sepearate css file for each controller
+
+rails generate will auto creates a sepearate css file for each controller
 we tend to make a single custom file though
 asset pipeline- anything in app/assets/stylesheets will auto included as part of the application.css file included in the site layout. 
 
