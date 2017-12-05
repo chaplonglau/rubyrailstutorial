@@ -113,6 +113,87 @@ Use paths for everything except redirects. Use URL for redirects
 
 ### Integration tests
 
+## Chapter 6 
+database- rails way of data persistence
 
+activerecord- the default library for interacting with the database 
+
+migrations- feature that allow data definitions to be written in pure ruby, instead of learning a SQL data definition langauge. they alter the structure of the database incremnetally
+
+the above features means you don't have to learn databases 
+
+    rails generate model User name:string email:string 
+models names are singular, controllers are plural. name and email are attributes. 
+
+### Running a migration or migrating up
+    rails db:migrate 
+* first time it's run, it creats a file called db/development.sqlite3, which is a SQLite database
+* see schema.rb for structure of database
+
+### Rolling back a migration
+    rails db:rollback
+* implicitly executes drop_table to reverse the create_table from the migration 
+
+### Sandbox
+    rails console --sandbox
+* any mods you make will be rolled back on exit 
+
+### Creating User Objects 
+* user.valid? (only checks if the object is valid)
+* user = User.new (only creates an object in mmeory)
+* user.save (after saved (assuming it succeeds) object will persist in database)
+* user.create (user.new + user.save)
+
+### Object attributes accessible via .
+    user.name
+    user.updated_at 
+
+### Destroying User objects 
+    user.destroy
+* destroyed object still exists in memory
+* destroyed objects can't be find() though 
+
+### Finding user objects 
+    User.find(1)
+    User.find_by(name:"bob")
+    User.first
+    User.all
+
+### Updating user objects 
+    user.email="blah@blah.com"
+    user.email="foo@blah.com"
+    user.reload.email 
+    // "blah@blah.com"
+    user.save 
+Reload reloads the object based on the database information 
+Object will not save if validations don't pass 
+
+    user.update_attributes(name:"bob", email: "bob@bob.com")
+    user.update_attribute(:name, "El Duderino")
+update_attributes accepts a hash of attritubutes and on success, updates and saves. returns true or false 
+
+### Use TDD for model validations 
+
+### validations 
+* presence - if a given attribute is present 
+  * validates(:name, presence: true)
+* length - if a given attribute is within a range 
+* format
+* uniqueness 
+* confirmation 
+    assert @user.valid? 
+    To see full message errors we can do user.errors.full_messages 
+
+### Saving Passwords
+logic 
+* take a submitted password
+* hash it 
+* compare result to the hashed value in database 
+has_secure_password onto user.rb 
+* ability to save password_digest attribute 
+* password/ passowrd confirmation attributes
+* authenticate method, (returns true if password is correct)
+* needs corresponding model to have attribute claled password_digest 
+     rails generate migration add_password_digest_to_users password_digest:string
 
 
