@@ -250,6 +250,46 @@ form_for
 ### Displaying Error Messages on SignUp 
 Create a shared folder in views if you're going to use helpers that are available throughout the application
 
+### Integration Tests
+* suitable to test for invalid submission
+    rails generate integration_test users_signup
+* to test to makes no new user is created with invalid submissions, we make the sure the # of users is equivalent before and after attempting to create an user 
+
+### On finish SignUp Form 
+* on successful creation of a user, we want to redirect to the newly created user's profile 
+    if @user.save
+        redirect_to @user 
+    else 
+        render 'new'
+    end
+* rails automatically infers form redirect_to @user that we want to redirect to user_url(@user)
+
+### Flash
+* a rails method to quickly display a temporary message 
+    flash[:success]="Welcome to the Sample App!"
+    flash[:danger]= "It failed." 
+* bootstrap css supports styling for success, info, warning, danger 
+
+### Reset database 
+    rails db:migrate:reset 
+
+### assert_no_difference 
+    assert_no_difference 'User.count' do
+      post users_path, ...
+    end
+* first argument is string 'User.count'
+* makes a comparison between User.count before and after the contents of the assert_difference 
+* second optional argument specifies the size of the difference 
+
+## Production Grade Server
+### enable SSL 
+     config.force_ssl= true @ config/environments/production.rb
+### switch from WEBrick (heroku default) to Puma 
+* change config file
+* define procfile 
+
+
+
 
 
 
