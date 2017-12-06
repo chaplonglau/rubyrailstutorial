@@ -165,6 +165,10 @@ models names are singular, controllers are plural. name and email are attributes
     user.reload.email 
     // "blah@blah.com"
     user.save 
+
+### Console command 
+    User.create(name: "Michael Hartl", email: "michael@example.com", password: "foobar", password_confirmation: "foobar")
+
 Reload reloads the object based on the database information 
 Object will not save if validations don't pass 
 
@@ -195,5 +199,62 @@ has_secure_password onto user.rb
 * authenticate method, (returns true if password is correct)
 * needs corresponding model to have attribute claled password_digest 
      rails generate migration add_password_digest_to_users password_digest:string
+
+## Chapter 7 
+### Environments 
+rails has 3 envrionments
+* test 
+* development (default)
+* production
+To find out, type Rails.env in rails console 
+To change env, pass in environment in rails console like as in
+     rails console test 
+
+### REST
+REpresentational State Transfer, its a architectural style 
+* represent data as resources that can be CRUD 
+
+### CRUD 
+* created
+* read
+* updated 
+* deleted
+
+### Resources 
+    resource :users in config/routes.rb will create all RESTful routes 
+* index via GET on /users
+* show via GET on /users/1 
+* new via GET on /users/new 
+* create via POST on /users
+* edit via GET on /users/1/edit 
+* update via POST on /users/1
+* destroy via DELETE on /users/1 
+
+### Making the (individual) User Page (users/1)
+Have a show action, with @user defined by User.find(parmas[:id])
+Have a show view 
+
+### Debugger 
+     debugger 
+add in that line anywhere, and you can go debug
+
+### Gravatar 
+* service that provides a globally recognized avatar 
+* gravatar URLs are based on an MD5 hash of the user's email address
+* different avatars for different emails 
+* by default, methods defined in any helper file are automatically available in any view, but put gavatar_for method in the users_helper because we use these avatars for users
+
+### Making the sign up page (users/new) 
+form_for 
+
+### Displaying Error Messages on SignUp 
+Create a shared folder in views if you're going to use helpers that are available throughout the application
+
+
+
+
+
+
+
 
 
