@@ -317,7 +317,6 @@ Create a shared folder in views if you're going to use helpers that are availabl
 * there is no session model (sessions are not a Active Record model )
 * but there is a session controller with corresponding actions
 
-
 ### Form for w/o a model 
      form_for(:session, url: login_path)
 
@@ -337,7 +336,7 @@ Create a shared folder in views if you're going to use helpers that are availabl
 ### Flash.now 
 * flashes will dissapear as soon as there is an additional request 
      flash.now[:danger] = 'Invalid email/password combination'
-
+ 
 ### SessionsHelper
 * include SessionsHelper @ applicaiton_controller.rb 
 * when user logins in, we place user's id using session[:user_id] which are encrypted and redirect_to the user's profile page 
@@ -352,8 +351,21 @@ Create a shared folder in views if you're going to use helpers that are availabl
 ### Fixtures
 * way of organizing data to be loaded into the test database 
 
+## Chapter 9 
 
+### Advanced Login 
+* Permanent cookies 
+* "remember me" features, that remember me checkbox 
+* that means users will auto stay logged in until they explicitly log out 
+* persistent cookies are vulnerable to session hijacking 
 
+### Persistant Sessions 
+* create a random string of digits for use as a token
+* place token in the browser cookies with expiration date way off
+* save hash digest of the token to the database
+* place an encrypted version of the user's id in the browsers cookies
+* when presented with a cookie matching user id, find the user in the databse using the given id, verfiy that the token cookie matches the associated hash digest 
+* PSA: digest - output of the cypt hash 
 
 
 
