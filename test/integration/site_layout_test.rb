@@ -11,6 +11,6 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     # Rails automatically inserts the value of about_path in place of the question mark (escaping any special characters if necessary), thereby checking for an HTML tag of the form <a href="/about">...</a>
     assert_select "a[href=?]", contact_path
     get contact_path
-    assert_select "title", full_title("Contact")
+    
   end
 end
