@@ -367,6 +367,13 @@ Create a shared folder in views if you're going to use helpers that are availabl
 * when presented with a cookie matching user id, find the user in the databse using the given id, verfiy that the token cookie matches the associated hash digest 
 * PSA: digest - output of the cypt hash 
 
+### SecureRandom.urlsafe_base64 
+* its a method, andd we can use on console 
+* returns a random string of length 22, each character has 64 possibilities
+
+
+
+
 
 
 
