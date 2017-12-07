@@ -288,7 +288,69 @@ Create a shared folder in views if you're going to use helpers that are availabl
 * change config file
 * define procfile 
 
+## Chapter 8 
 
+### HTTP 
+* a stateless protocol 
+* means each request is an independent transaction that is unable to use information form any previous requests 
+* tldr: HTTP can't remember a user's identity page to page 
+
+### Session
+* a semi-permanent connection between two computers 
+* web apps requiring user login uses these 
+* model sessions as a resource 
+* login page -> new session
+* act of logging in -> create session
+* log out -> destory session 
+
+### Cookies 
+* Small pieces of text placed on the user's browser 
+* persist from one page to another page 
+* we use cookies to store information 
+* sessions will use cookies 
+
+### Session Routes 
+* we need only new, create, and destroy actions
+* GET on '/login' is new 
+* POST on '/login' is create
+* DELETE on 'logout' is destroy
+* there is no session model (sessions are not a Active Record model )
+* but there is a session controller with corresponding actions
+
+
+### Form for w/o a model 
+     form_for(:session, url: login_path)
+
+### Flash
+* Contents of the flash persist for one request
+* Rendering/re-rendering a template doesn't count as a request
+* So if you flash a message with a render, that message will persist and be displayed when you say click 'home' (which is a request)
+
+### Integration Test to test correct flashing
+* visit login path
+* assert sessions/new renders 
+* post to sessions path with invalid params
+* verify that sessions/new re-renders 
+* vist another page
+* verify flash doesn't appear 
+
+### Flash.now 
+* flashes will dissapear as soon as there is an additional request 
+     flash.now[:danger] = 'Invalid email/password combination'
+
+### SessionsHelper
+* include SessionsHelper @ applicaiton_controller.rb 
+* when user logins in, we place user's id using session[:user_id] which are encrypted and redirect_to the user's profile page 
+
+### ||=
+* or equals
+* similar to x=x+1 -> x+=1
+* @foo = @foo || "bar" -> @foo||="bar"
+* if @foo is false, then assign bar to @foo
+* if @foo is true, then nothing 
+
+### Fixtures
+* way of organizing data to be loaded into the test database 
 
 
 
