@@ -371,9 +371,37 @@ Create a shared folder in views if you're going to use helpers that are availabl
 * its a method, andd we can use on console 
 * returns a random string of length 22, each character has 64 possibilities
 
+### Turn on Maintenance mode for Heroku
+     heroku maintenance:on @ terminal 
+     heroku maintenance:off 
+# dispalying a standard error page while while site is down 
 
+## Chapter 10 
+### Updating Users (edit them)
+### authentication - allows us to identify users of our site 
+### authorization - lets us to control what they can do 
 
+Logic : 
+* if you're not logged in and you try to go to your edit page, you'll be forwarded to the login page with a helpful message
+* if you're not logged in and you try to go a page they'll never be authorized for, they will be forwarded to the root URL 
+* we use a before filter to implement this 
+    before_action :logged_in_user, only: [:edit, :update] 
 
+    def logged_in_user
+         unless logged_in?
+           store_location
+           flash[:danger] ="Please log in."
+           redirect_to login_url
+          end
+    end 
+
+* before filter uses before action to arrange for a method to be called before the given actions 
+* ie: before the edit/ update action,  we will call on the logged_in_user method 
+* by default, before filters apply to every action in a controller 
+
+### Sample Users (Faker GEM)
+* include gem 'faker' inside gemfile 
+* create! is like create but raises an exception for an invalid user rather than returning false 
 
 
 
