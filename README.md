@@ -402,6 +402,26 @@ Logic :
 ### Sample Users (Faker GEM)
 * include gem 'faker' inside gemfile 
 * create! is like create but raises an exception for an invalid user rather than returning false 
+* do your faker stuff in the seeds.rb file 
+    rails db:migrate:reset
+    rails db:seed
+
+### Pagination 
+* will paginate method placed inside a users view, looks for an @users object, and displays pagination links to access other pages 
+* instead of User.all @ index method, use 
+     @users = User.paginate(page: params[:page])
+
+### Refactor 
+When you call render not on a string with the name of a partial, but rather on a user variable of class User, Rails will llook for a partial called _user.html.erb 
+
+When you call render on @users ( a list of User objects) rails auto iterates through them and renders each one with _user.html.erb 
+
+so much magic :( 
+
+### Deleting Users 
+* admin is a boolean attribute on User model 
+* 
+
 
 
 
