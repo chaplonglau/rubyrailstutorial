@@ -2,6 +2,11 @@
 
 ## Chapter 3 
 ### Setup
+
+    rails new sample_app
+    
+Go make a static_pages controller, and set the home page
+
     $ git remote add origin git@bitbucket.org:<username>/sample_app.git
     $ git push -u origin --all # pushes up the repo and its refs for the first time
 
