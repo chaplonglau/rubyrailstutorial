@@ -6,6 +6,7 @@
     $ git push -u origin --all # pushes up the repo and its refs for the first time
 
 Deploy to Heroku with test page via hello action on app controller and as the root route 
+    
     $ heroku create
     $ git push heroku master
 
